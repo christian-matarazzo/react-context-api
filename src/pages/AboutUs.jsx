@@ -1,4 +1,13 @@
+
+
+import { useContext } from "react"
+import {BudgetContext} from "../context/BudgetContext"
 export default function AboutUs() {
+
+
+
+
+
     return (
         <main>
             <div className="container min-vh-100 justify-content-center d-flex">

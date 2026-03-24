@@ -2,8 +2,11 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Atom } from "react-loading-indicators"
-
+import { BudgetContext } from "../context/BudgetContext"
+import { useContext } from "react"
 export default function Shop() {
+    const {budgetMode} = useContext(BudgetContext) /* use BudgetContext */
+
     const [products, setProducts] = useState([])
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products')
@@ -14,7 +17,11 @@ export default function Shop() {
                 console.error(error)
             })
     }, [])
+const filteredProducts = budgetMode ? products.filter(product => product.price <= 30) : products; /* filtered list */
 
+useEffect(() => {
+
+})
     return (
         <main className="d-flex justify-content-center align-items-center min-vh-100 ">
             <div className="container py-5">
@@ -24,9 +31,8 @@ export default function Shop() {
                 </div>
                     : (
                         <div className="row g-4 justify-content-center" >
-                            {products.map(product =>
+                            {filteredProducts.map(product => /* change filter obj */
                                 <div className="col col-12 col-md-6 col-lg-4 d-flex justify-content-center" key={product.id}>
-
                                     <div className="card d-flex flex-column" style={{ width: '16rem' }}>
                                         <img
                                             src={product.image}

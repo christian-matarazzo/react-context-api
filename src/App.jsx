@@ -5,10 +5,11 @@ import Home from './pages/Home'
 import Shop from './pages/Shop'
 import SingleProduct from './pages/SingleProduct'
 import Error from './pages/Error'
-
+import { BudgetProvider } from './context/BudgetContext'
 function App() {
   return (
     <>
+    <BudgetProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<DefaultLayout></DefaultLayout>}>
@@ -20,6 +21,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+    </BudgetProvider> 
     </>
   )
 }
